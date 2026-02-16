@@ -1,0 +1,36 @@
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-main);
+}
+
+.text-meta {
+    font-size: var(--font-size-meta);
+    color: var(--color-text-light);
+}
+
+.text-lead {
+    font-size: 1.25rem;
+    color: var(--color-steel);
+}
