@@ -29,20 +29,20 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 // ─── CORS ──────────────────────────────────────────────
 const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers":
-        "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
 };
 
 // ─── Email Templates ───────────────────────────────────
 
 function adminEmailTemplate(
-    name: string,
-    email: string,
-    message: string,
-    date: string
+  name: string,
+  email: string,
+  message: string,
+  date: string
 ): string {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"></head>
@@ -95,7 +95,7 @@ function adminEmailTemplate(
 }
 
 function userThankYouTemplate(name: string): string {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"></head>
@@ -154,119 +154,119 @@ function userThankYouTemplate(name: string): string {
 // ─── Main Handler ──────────────────────────────────────
 
 serve(async (req) => {
-    // Handle CORS preflight
-    if (req.method === "OPTIONS") {
-        return new Response("ok", { headers: corsHeaders });
+  // Handle CORS preflight
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
+  try {
+    const { name, email, message, recaptchaToken } = await req.json();
+
+    // ── 1. Validate input ────────────────────────────
+    if (!name || !email || !message) {
+      return new Response(
+        JSON.stringify({ error: "Name, email, and message are required." }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
-    try {
-        const { name, email, message, recaptchaToken } = await req.json();
+    // ── 2. Verify reCAPTCHA ──────────────────────────
+    if (recaptchaToken) {
+      const verifyRes = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${recaptchaToken}`,
+        { method: "POST" }
+      );
+      const verifyData = await verifyRes.json();
 
-        // ── 1. Validate input ────────────────────────────
-        if (!name || !email || !message) {
-            return new Response(
-                JSON.stringify({ error: "Name, email, and message are required." }),
-                {
-                    status: 400,
-                    headers: { ...corsHeaders, "Content-Type": "application/json" },
-                }
-            );
-        }
-
-        // ── 2. Verify reCAPTCHA ──────────────────────────
-        if (recaptchaToken) {
-            const verifyRes = await fetch(
-                `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${recaptchaToken}`,
-                { method: "POST" }
-            );
-            const verifyData = await verifyRes.json();
-
-            if (!verifyData.success || verifyData.score < 0.5) {
-                return new Response(
-                    JSON.stringify({ error: "reCAPTCHA verification failed." }),
-                    {
-                        status: 400,
-                        headers: { ...corsHeaders, "Content-Type": "application/json" },
-                    }
-                );
-            }
-        }
-
-        // ── 3. Insert into database ──────────────────────
-        const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-
-        const { error: dbError } = await supabase
-            .from("contact_submissions")
-            .insert({ name, email, message });
-
-        if (dbError) {
-            console.error("DB insert error:", dbError);
-            // Continue anyway — email is more important than DB
-        }
-
-        // ── 4. Send admin notification email ─────────────
-        const now = new Date().toLocaleString("en-GB", {
-            dateStyle: "full",
-            timeStyle: "short",
-            timeZone: "Asia/Kolkata",
-        });
-
-        const adminRes = await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${RESEND_API_KEY}`,
-            },
-            body: JSON.stringify({
-                from: "Seerd Energy <onboarding@resend.dev>",
-                to: [ADMIN_EMAIL],
-                subject: `New Contact: ${name} — Seerd Energy`,
-                html: adminEmailTemplate(name, email, message, now),
-            }),
-        });
-
-        if (!adminRes.ok) {
-            console.error("Admin email failed:", await adminRes.text());
-        }
-
-        // ── 5. Send user thank-you email ─────────────────
-        const userRes = await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${RESEND_API_KEY}`,
-            },
-            body: JSON.stringify({
-                from: "Seerd Energy <onboarding@resend.dev>",
-                to: [email],
-                subject: "Thank you for contacting Seerd Energy",
-                html: userThankYouTemplate(name),
-            }),
-        });
-
-        if (!userRes.ok) {
-            console.error("User email failed:", await userRes.text());
-        }
-
-        // ── 6. Return success ────────────────────────────
+      if (!verifyData.success || verifyData.score < 0.1) {
         return new Response(
-            JSON.stringify({
-                success: true,
-                message: "Submission received. Emails sent.",
-            }),
-            {
-                status: 200,
-                headers: { ...corsHeaders, "Content-Type": "application/json" },
-            }
+          JSON.stringify({ error: "reCAPTCHA verification failed." }),
+          {
+            status: 400,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          }
         );
-    } catch (error) {
-        console.error("Edge Function error:", error);
-        return new Response(
-            JSON.stringify({ error: error.message || "Internal server error" }),
-            {
-                status: 500,
-                headers: { ...corsHeaders, "Content-Type": "application/json" },
-            }
-        );
+      }
     }
+
+    // ── 3. Insert into database ──────────────────────
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+    const { error: dbError } = await supabase
+      .from("contact_submissions")
+      .insert({ name, email, message });
+
+    if (dbError) {
+      console.error("DB insert error:", dbError);
+      // Continue anyway — email is more important than DB
+    }
+
+    // ── 4. Send admin notification email ─────────────
+    const now = new Date().toLocaleString("en-GB", {
+      dateStyle: "full",
+      timeStyle: "short",
+      timeZone: "Asia/Kolkata",
+    });
+
+    const adminRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "Seerd Energy <onboarding@resend.dev>",
+        to: [ADMIN_EMAIL],
+        subject: `New Contact: ${name} — Seerd Energy`,
+        html: adminEmailTemplate(name, email, message, now),
+      }),
+    });
+
+    if (!adminRes.ok) {
+      console.error("Admin email failed:", await adminRes.text());
+    }
+
+    // ── 5. Send user thank-you email ─────────────────
+    const userRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "Seerd Energy <onboarding@resend.dev>",
+        to: [email],
+        subject: "Thank you for contacting Seerd Energy",
+        html: userThankYouTemplate(name),
+      }),
+    });
+
+    if (!userRes.ok) {
+      console.error("User email failed:", await userRes.text());
+    }
+
+    // ── 6. Return success ────────────────────────────
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: "Submission received. Emails sent.",
+      }),
+      {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      }
+    );
+  } catch (error) {
+    console.error("Edge Function error:", error);
+    return new Response(
+      JSON.stringify({ error: error.message || "Internal server error" }),
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      }
+    );
+  }
 });
