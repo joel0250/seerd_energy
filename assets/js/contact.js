@@ -7,16 +7,16 @@
 
 // ── Configuration ────────────────────────────────────────
 // Safe to expose: this is your Supabase project URL
-const SUPABASE_URL = "https://YOUR_PROJECT_REF.supabase.co";
+const SUPABASE_URL = "https://fiyxnbyktqxawqutljsf.supabase.co";
 
 // The Edge Function endpoint
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/send-email`;
 
 // Safe to expose: the anon key is used for auth headers
-const SUPABASE_ANON_KEY = "YOUR_ANON_KEY_HERE";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpeXhuYnlrdHF4YXdxdXRsanNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMzAwNDEsImV4cCI6MjA4NjgwNjA0MX0.l0ieyeEe2yeNHB2SWB4-NVq_gqLiWAlczkcCyogpXHA";
 
 // reCAPTCHA v3 site key (public)
-const RECAPTCHA_SITE_KEY = "PLACEHOLDER_SITE_KEY";
+const RECAPTCHA_SITE_KEY = "6LcTu20sAAAAAM2tfeWX0gYKR4Hx4NEtXKKdLzJ3";
 
 // ── Form Handler ─────────────────────────────────────────
 
