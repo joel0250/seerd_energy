@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Seerd Energy Capabilities — Procurement, logistics, technical validation, and inventory management.">
+    <title>Capabilities | Seerd Energy</title>
+    <link rel="canonical" href="https://seerdenergy.com/services">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        /* Page Specific Styles */
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-bottom: 120px;
+            align-items: center;
+        }
+
+        .service-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-image {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(46, 58, 89, 0.1);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s var(--ease);
+        }
+
+        .service-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--color-navy);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        .service-number {
+            font-family: monospace;
+            color: var(--color-primary);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        @media (min-width: 960px) {
+            .service-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 96px;
+            }
+
+            .service-row:nth-child(even) .service-content {
+                order: 2;
+            }
+
+            .service-row:nth-child(even) .service-image {
+                order: 1;
+            }
+        }
+
+        .section--cta {
+            background: var(--color-navy);
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .section--cta h2 {
+            color: var(--color-white);
+        }
+
+        .section--cta p {
+            color: #8a9bc0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a href="index.html" aria-label="Seerd Energy Home">
+                <img src="assets/img/logo.png" alt="Seerd Energy" width="160" height="48"
+                    style="height: 40px; width: auto;">
+            </a>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <nav id="site-nav" class="site-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Capabilities</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="btn btn-primary">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Intro -->
+        <section class="section">
+            <div class="wrap">
+                <div class="section-header reveal">
+                    <h1>Engineered Capabilities</h1>
+                    <p class="subtitle">Comprehensive industrial supply solutions built for high-stakes projects and
+                        continuous operations. We bridge the gap between global manufacturing and local execution.</p>
+                </div>
+
+                <div class="services-list">
+
+                    <!-- Service 01 -->
+                    <div class="service-row reveal">
+                        <div class="service-content">
+                            <span class="service-number">01 / PROCUREMENT</span>
+                            <div class="service-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                    </path>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                </svg>
+                            </div>
+                            <h3>Bulk Procurement</h3>
+                            <p>We leverage global relationships to source raw and engineered materials at scale. From
+                                steel alloys to advanced composites, we ensure your project has the inputs it needs — on
+                                specification, on time.</p>
+                            <ul style="margin-top: 24px; color: var(--color-text-secondary);">
+                                <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="var(--color-primary)" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Global Sourcing Network
+                                </li>
+                                <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="var(--color-primary)" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Material Validation
+                                </li>
+                                <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="var(--color-primary)" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Volume Negotiation
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="service-image">
+                            <img src="assets/img/sector_manufacturing_plant_1771239833406.png"
+                                alt="Industrial Procurement" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Service 02 -->
+                    <div class="service-row reveal">
+                        <div class="service-content">
+                            <span class="service-number">02 / LOGISTICS</span>
+                            <div class="service-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                            </div>
+                            <h3>Logistics & Distribution</h3>
+                            <p>Our logistics network is designed for resilience. We optimize routes and carriers to
+                                minimize lead times and mitigate global supply chain disruptions — even in constrained
+                                markets.</p>
+                            <p>We handle the complexity of customs, freight forwarding, and last-mile delivery so your
+                                team can focus on operations.</p>
+                        </div>
+                        <div class="service-image">
+                            <img src="assets/img/service_logistics.png" alt="Logistics and Distribution" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Service 03 -->
+                    <div class="service-row reveal">
+                        <div class="service-content">
+                            <span class="service-number">03 / TECHNICAL</span>
+                            <div class="service-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3>Technical Consultation</h3>
+                            <p>Our engineering team reviews specifications to ensure material suitability. We prevent
+                                costly mismatch errors before the order is placed — reducing rework and project delays.
+                            </p>
+                            <p>Available for on-site assessment and compliance audits in energy and construction
+                                sectors.</p>
+                        </div>
+                        <div class="service-image">
+                            <img src="assets/img/sector_infrastructure_construction_1771239816068.png"
+                                alt="Technical Consultation" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Service 04 -->
+                    <div class="service-row reveal">
+                        <div class="service-content">
+                            <span class="service-number">04 / INVENTORY</span>
+                            <div class="service-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 3v18h18"></path>
+                                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+                                </svg>
+                            </div>
+                            <h3>Inventory Management</h3>
+                            <p>Just-in-time delivery or strategic stockpiling. We offer warehousing solutions that
+                                balance cash flow with supply security — adapting to your operational cadence.</p>
+                            <p>Our digital tracking systems provide real-time visibility into stock levels and movement.
+                            </p>
+                        </div>
+                        <div class="service-image">
+                            <img src="assets/img/service_inventory.png" alt="Inventory Management" loading="lazy">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section section--cta">
+            <div class="wrap reveal">
+                <h2>Ready to optimize your supply chain?</h2>
+                <p
+                    style="margin-top: 16px; margin-bottom: 32px; font-size: 1.125rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Connect with our team for a capability assessment or to request a quote for your next project.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="height: 56px; padding: 0 40px;">Request
+                    Consultation</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <canvas id="footer-canvas"></canvas>
+        <div class="wrap">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 40px;">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+                    <div>
+                        <img src="assets/img/logo.svg" alt="Seerd Energy" width="120" height="36"
+                            style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+                        <p
+                            style="color: #8a9bc0; max-width: 280px; margin-top: 16px; font-size: 0.9375rem; line-height: 1.55;">
+                            Reliability in every link of the supply chain.</p>
+                    </div>
+                    <div style="display: flex; gap: 48px; flex-wrap: wrap;">
+                        <div>
+                            <p
+                                style="font-weight: 600; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.08em; color: #8a9bc0; margin-bottom: 16px;">
+                                Company</p>
+                            <ul style="display: grid; gap: 10px;">
+                                <li><a href="about.html" style="color: #c5cee0; font-size: 0.9375rem;">About</a></li>
+                                <li><a href="services.html"
+                                        style="color: #c5cee0; font-size: 0.9375rem;">Capabilities</a></li>
+                                <li><a href="contact.html" style="color: #c5cee0; font-size: 0.9375rem;">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p
+                                style="font-weight: 600; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.08em; color: #8a9bc0; margin-bottom: 16px;">
+                                Legal</p>
+                            <ul style="display: grid; gap: 10px;">
+                                <li><a href="privacy.html" style="color: #c5cee0; font-size: 0.9375rem;">Privacy</a>
+                                </li>
+                                <li><a href="terms.html" style="color: #c5cee0; font-size: 0.9375rem;">Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 48px; border-top: 1px solid #3F4E73; padding-top: 20px;">
+                <p style="color: #6b7fa8; font-size: 0.8125rem;">© 2026 Seerd Energy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/animations.js" defer></script>
+    <script src="assets/js/footer-animation.js" defer></script>
+</body>
+
+</html>
