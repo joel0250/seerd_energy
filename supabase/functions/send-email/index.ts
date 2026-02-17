@@ -50,7 +50,7 @@ function adminEmailTemplate(
   <div style="max-width:600px;margin:0 auto;background:#ffffff;">
     <!-- Header -->
     <div style="background:linear-gradient(135deg,#2E3A59 0%,#1a2236 100%);padding:32px 40px;">
-      <h1 style="color:#F2C230;font-size:20px;margin:0;">⚡ Seerd Energy</h1>
+      <img src="https://seerdenergy.com/assets/img/logo-email.png" alt="Seerd Energy" width="160" style="display:block; border:0;">
       <p style="color:#8a9bc0;font-size:13px;margin:8px 0 0;">New Contact Form Submission</p>
     </div>
 
@@ -103,7 +103,7 @@ function userThankYouTemplate(name: string): string {
   <div style="max-width:600px;margin:0 auto;background:#ffffff;">
     <!-- Header -->
     <div style="background:linear-gradient(135deg,#2E3A59 0%,#1a2236 100%);padding:40px;text-align:center;">
-      <h1 style="color:#F2C230;font-size:22px;margin:0;">⚡ Seerd Energy</h1>
+      <img src="https://seerdenergy.com/assets/img/logo-email.png" alt="Seerd Energy" width="180" style="display:inline-block; border:0;">
       <p style="color:#c5cee0;font-size:14px;margin:12px 0 0;">Industrial Supply Reliability</p>
     </div>
 
@@ -218,7 +218,7 @@ serve(async (req) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Seerd Energy <onboarding@resend.dev>",
+        from: "Seerd Energy <info@seerdenergy.com>",
         to: [ADMIN_EMAIL],
         subject: `New Contact: ${name} — Seerd Energy`,
         html: adminEmailTemplate(name, email, message, now),
@@ -237,7 +237,7 @@ serve(async (req) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Seerd Energy <onboarding@resend.dev>",
+        from: "Seerd Energy <info@seerdenergy.com>",
         to: [email],
         subject: "Thank you for contacting Seerd Energy",
         html: userThankYouTemplate(name),
