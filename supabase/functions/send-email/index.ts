@@ -138,7 +138,7 @@ function userThankYouTemplate(name: string): string {
     <!-- Footer -->
     <div style="background:linear-gradient(135deg,#2E3A59 0%,#1a2236 100%);padding:32px 40px;text-align:center;">
       <p style="color:#8a9bc0;font-size:13px;margin:0 0 8px;">Seerd Energy Ltd.</p>
-      <p style="color:#6b7fa8;font-size:12px;margin:0;">Industrial Zone, Sector 4 · London, UK</p>
+      <p style="color:#6b7fa8;font-size:12px;margin:0;">Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E</p>
       <p style="color:#6b7fa8;font-size:12px;margin:8px 0 0;">
         <a href="mailto:info@seerdenergy.com" style="color:#8a9bc0;">info@seerdenergy.com</a>
       </p>
